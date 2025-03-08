@@ -32,3 +32,32 @@ curl -s "http://localhost:5000/daemonsets/ns=kube-system&name=kube-proxy"
 
 curl -s "http://localhost:5000/cronjobs/verbose=true"
 ```
+
+#### Example output:
+```
+curl -s "http://localhost:5000/deployments"
+[
+  {
+    "name": "coredns",
+    "namespace": "kube-system",
+    "Container": [
+      {
+        "imagename": "registry.k8s.io/coredns/coredns",
+        "shortname": "coredns",
+        "version": "v1.11.3"
+      }
+    ]
+  },
+  {
+    "name": "local-path-provisioner",
+    "namespace": "local-path-storage",
+    "Container": [
+      {
+        "imagename": "docker.io/kindest/local-path-provisioner",
+        "shortname": "local-path-provisioner",
+        "version": "v20250214-acbabc1a"
+      }
+    ]
+  }
+]
+```
