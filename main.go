@@ -34,9 +34,9 @@ func main() {
 	mux := http.NewServeMux()
 
 	// HTTP handlers
-	mux.HandleFunc("/deployments", k.handleDeployments)
-	mux.HandleFunc("/daemonsets", k.handleDaemonsets)
-	mux.HandleFunc("/cronjobs", k.handleCronjobs)
+	mux.HandleFunc("/deployments", k.handleResource)
+	mux.HandleFunc("/daemonsets", k.handleResource)
+	mux.HandleFunc("/cronjobs", k.handleResource)
 
 	mux.HandleFunc("/health", health)
 	mux.HandleFunc("/readiness", readiness)
