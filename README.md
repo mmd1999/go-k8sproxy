@@ -1,8 +1,8 @@
-# goproject
+# go-k8sproxy
 
 A simple application that queries a Kubernetes cluster API and returns JSON output for various workloads.
 
-Supports running as an application in-cluster (WIP) and out-of-cluster
+Supports running as an application in-cluster and out-of-cluster
 
 #### Environment vars:
 | Environment Var | Default | Description |
