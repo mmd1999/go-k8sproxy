@@ -1,4 +1,4 @@
-module github.com/mmd1999/goproject
+module github.com/mmd1999/go-k8sproxy
 
 go 1.23.0
 
