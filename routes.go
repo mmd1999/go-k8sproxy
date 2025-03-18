@@ -73,20 +73,17 @@ func validation(ns string, name string, verbose string) error {
 	v := validator.New()
 	// Validate query params if provided
 	if name != "" {
-		err := v.Var(name, "hostname_rfc1123")
-		if err != nil {
+		if err := v.Var(name, "hostname_rfc1123"); err != nil {
 			return fmt.Errorf("Invalid 'name' provided, does not follow RFC 1123 format")
 		}
 	}
 	if ns != "" {
-		err := v.Var(ns, "hostname_rfc1123")
-		if err != nil {
+		if err := v.Var(ns, "hostname_rfc1123"); err != nil {
 			return fmt.Errorf("Invalid 'namespace' provided, does not follow RFC 1123 format")
 		}
 	}
 	if verbose != "" {
-		err := v.Var(verbose, "boolean")
-		if err != nil {
+		if err := v.Var(verbose, "boolean"); err != nil {
 			return fmt.Errorf("Invalid value for 'verbose' provided, one of either 'true' or 'false' is expected")
 		}
 	}

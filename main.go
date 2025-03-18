@@ -24,8 +24,7 @@ func main() {
 		fmt.Println(err)
 	}
 	var err error
-	k.client, err = cfg.AuthK8s()
-	if err != nil {
+	if k.client, err = cfg.AuthK8s(); err != nil {
 		log.Fatal(err)
 	}
 
