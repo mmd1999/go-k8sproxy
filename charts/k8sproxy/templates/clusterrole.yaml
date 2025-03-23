@@ -1,0 +1,32 @@
+{{- if .Values.rbac.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "k8sproxy.fullname" . }}
+  labels:
+    {{- include "k8sproxy.labels" . | nindent 4 }}
+rules:
+- apiGroups: 
+  - ""
+  resources:
+  - namespaces
+  verbs: ["get", "watch", "list"]
+- apiGroups:
+    - apps
+  resources:
+    - daemonsets
+    - daemonsets/status
+    - deployments
+    - deployments/scale
+    - deployments/status
+    - statefulsets
+    - statefulsets/scale
+    - statefulsets/status
+  verbs: ["get", "watch", "list"]
+- apiGroups:
+    - batch
+  resources:
+    - cronjobs
+    - cronjobs/status
+  verbs: ["get", "watch", "list"]
+{{- end }}

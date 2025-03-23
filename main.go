@@ -37,7 +37,7 @@ func main() {
 	mux.HandleFunc("/daemonsets", k.handleResource)
 	mux.HandleFunc("/cronjobs", k.handleResource)
 
-	mux.HandleFunc("/health", health)
-	mux.HandleFunc("/readiness", readiness)
+	mux.HandleFunc("/healthz", health)
+	mux.HandleFunc("/readyz", readiness)
 	log.Fatal(http.ListenAndServe(port, mux))
 }
