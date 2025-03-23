@@ -27,7 +27,7 @@ spec:
       automountServiceAccountToken: true
       serviceAccountName: k8sproxy
       containers:
-      - image: go-k8sproxy:latest
+      - image: mmd1999/go-k8sproxy:latest
         name: k8sproxy
         resources:
           requests:
