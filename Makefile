@@ -9,12 +9,11 @@ ifndef CHART_VERSION
 $(error CHART_VERSION is not set)
 endif
 
-.PHONY: build publish tag scan helm-version helm-package helm-push
+.PHONY: build publish tag scan helm-version helm-package helm-push all
 
 build:
 	@echo "Building $(APP_NAME):$(VERSION)"
 	docker build -t $(APP_NAME):$(VERSION) .
-
 scan:
 	@echo "Scanning $(REPO_NAME)/$(APP_NAME):$(VERSION)"
 	trivy image --exit-code 1 -s "MEDIUM,HIGH,CRITICAL" $(APP_NAME):$(VERSION)
@@ -35,8 +34,10 @@ helm-version:
 
 helm-package: helm-version
 	@echo "Packaging $(CHART_NAME):$(CHART_VERSION)"
-	helm package charts/$(CHART_NAME) --version $(CHART_VERSION) --app-version $(VERSION) .
+	helm package charts/$(CHART_NAME)/ --version $(CHART_VERSION) --app-version $(VERSION)
 
 helm-push: helm-package
 	@echo "Pushing $(CHART_NAME):$(CHART_VERSION) to oci://ghcr.io/$(REPO_NAME)"
-	helm push mychart-$(CHART_VERSION).tgz oci://ghcr.io/$(REPO_NAME)/$(CHART_NAME)
+	helm push $(CHART_NAME)-$(CHART_VERSION).tgz oci://ghcr.io/$(REPO_NAME)/$(CHART_NAME)
+
+all: publish helm-push
