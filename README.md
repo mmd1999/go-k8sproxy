@@ -61,3 +61,8 @@ curl -s "http://localhost:5000/deployments"
   }
 ]
 ```
+
+#### Installation
+```shell
+helm install k8sproxy -n k8sproxy --create-namespace oci://ghcr.io/mmd1999/k8sproxy/k8sproxy:0.1.1
+```
